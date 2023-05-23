@@ -4,18 +4,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Use vim
-bindkey -v
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-
-if [[ "$TERM" != 'linux' ]]; then
-    ZSH_THEME='gruvbox'
-    SOLARIZED_THEME="dark"
-fi
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -77,7 +70,7 @@ fi
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,18 +99,57 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# Assign applications to workspaces
 
-# ----- Custom aliases ------ #
+# Enable vi mode
+bindkey -v
+
+# NVIM Alias
+alias nvim="~/.appimage/nvim.appimage"
 
 # Configs
 alias i3conf="nvim ~/.config/i3/config"
 alias zshconf="nvim ~/.zshrc"
 alias tmuxconf="nvim ~/.tmux.conf"
-alias kittyconf="nvim ~/.kitty"
+alias kittyconf="nvim ~/.config/kitty/kitty.conf"
+
+alias nvimconf="nvim ~/.config/nvim/"
 
 # APT
 alias update="sudo apt-update"
 alias ins="sudo apt-get install"
 alias rm="sudo apt-get remove"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# brightness
+alias incBrightness="sudo brightnessctl --class=backlight set +10%"
+alias decBrightness="sudo brightnessctl --class=backlight set 10%-"
+
+# Files
+alias del="sudo rm -rf"
+
+# xmodmap
+alias xmodmap="xmodmap ~/.config/.Xmodmap"
+
+# git
+alias ga="git add -A"
+alias gc="git commit -m"
+alias gp="git push"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export OPENAI_API_KEY=""
+
+# pnpm
+export PNPM_HOME="/home/waldo/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# Notetaking Github Variables
+export GITHUB_CLIENT_ID=""
+export GITHUB_CLIENT_SECRET=""
+
